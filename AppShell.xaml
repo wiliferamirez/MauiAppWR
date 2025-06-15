@@ -7,9 +7,15 @@
     Shell.FlyoutBehavior="Disabled"
     Title="MauiAppWR">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <ShellContent
+            Title="Acerca de mí"
+            ContentTemplate="{DataTemplate local:AboutPage}" />
+    </TabBar>
 
 </Shell>
