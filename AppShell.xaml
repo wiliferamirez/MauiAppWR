@@ -9,12 +9,12 @@
 
     <TabBar>
         <ShellContent
-            Title="Home"
-            ContentTemplate="{DataTemplate local:MainPage}"
+            Title="Notes"
+            ContentTemplate="{DataTemplate local:NotePage}"
             Route="MainPage" />
 
         <ShellContent
-            Title="Acerca de mí"
+            Title="About me"
             ContentTemplate="{DataTemplate local:AboutPage}" />
     </TabBar>
 
