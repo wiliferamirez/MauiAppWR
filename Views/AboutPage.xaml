@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppWR.Views.AboutPage"
+             Title="AboutPage">
+
+
+    <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center">
+
+        <Label Text="William Ramírez"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+        <Label Text="Soy estudiante de Ingeniería en Sofware, apasioado por el thaiboxing"
+                   FontSize="18"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

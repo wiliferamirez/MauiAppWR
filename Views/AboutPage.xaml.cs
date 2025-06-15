@@ -1,10 +1,10 @@
-namespace MauiAppWR;
+namespace MauiAppWR.Views;
 
 public partial class AboutPage : ContentPage
 {
 	public AboutPage()
 	{
-		InitializeComponent();
+        InitializeComponent();
 	}
 
     private async void LearnMore_Clicked(object sender, EventArgs e)
