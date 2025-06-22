@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:MauiAppWR.ViewModels"
              x:Class="MauiAppWR.Views.AllNotesPage"
              Title="AllNotesPage"
+             NavigatedTo="ContentPage_NavigatedTo"
              x:DataType="viewModels:NotesViewModel">
     <ContentPage.BindingContext>
         <viewModels:NotesViewModel />
