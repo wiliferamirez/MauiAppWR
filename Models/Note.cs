@@ -8,15 +8,15 @@ namespace MauiAppWR.Models
 {
     internal class Note
     {
+        public string Filename { get; set; }
+        public string Text { get; set; }
+        public DateTime Date { get; set; }
         public Note()
         {
             Filename = $"{Path.GetRandomFileName()}.notes.txt";
             Date = DateTime.Now;
             Text = "";
         }
-        public string Filename { get; set; }
-        public string Text { get; set; }
-        public DateTime Date { get; set; }
 
         public void Save() =>
             File.WriteAllText(System.IO.Path.Combine(FileSystem.AppDataDirectory, Filename), Text);
