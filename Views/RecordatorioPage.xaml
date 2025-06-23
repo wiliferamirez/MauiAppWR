@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MauiAppWR.ViewModels"
+             x:Class="MauiAppWR.Views.RecordatorioPage"
+             Title="RecordatorioPage">
+    <ContentPage.BindingContext>
+        <viewmodels:RecordatorioViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20">
+        <Label Text="Texto del recordatorio" />
+        <Entry Text="{Binding Texto}" Placeholder="Escribe el recordatorio" />
+
+        <Label Text="Fecha y hora" />
+        <DatePicker Date="{Binding FechaHora}" />
+        <TimePicker Time="{Binding FechaHora, Mode=TwoWay}" />
+
+        <Label Text="¿Activo?" />
+        <Switch IsToggled="{Binding Activo}" />
+
+        <Button Text="Guardar" Command="{Binding GuardarCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

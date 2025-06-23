@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace MauiAppWR.ViewModels
 {
-    internal class RecordatoriosViewModel : ObservableObject
+    internal class RecordatoriosViewModel : ObservableObject, IQueryAttributable
     {
         public ObservableCollection<Recordatorio> TodosLosRecordatorios { get; set; }
 
@@ -22,10 +22,7 @@ namespace MauiAppWR.ViewModels
 
         private async Task NuevoRecordatorio()
         {
-            var nuevo = new Recordatorio { Texto = "Nuevo recordatorio" };
-            TodosLosRecordatorios.Insert(0, nuevo);
-            GuardarCambios();
-            await Shell.Current.DisplayAlert("Recordatorio", "Nuevo recordatorio creado", "OK");
+            await Shell.Current.GoToAsync(nameof(Views.RecordatorioPage));
         }
 
         private async Task EliminarRecordatorio(Recordatorio r)
@@ -42,5 +39,15 @@ namespace MauiAppWR.ViewModels
         {
             Recordatorio.SaveAll(TodosLosRecordatorios.ToList());
         }
+        void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            if (query.ContainsKey("guardado"))
+            {
+                TodosLosRecordatorios.Clear();
+                foreach (var r in Recordatorio.LoadAll())
+                    TodosLosRecordatorios.Add(r);
+            }
+        }
+
     }
 }
