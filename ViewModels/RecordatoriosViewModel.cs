@@ -21,7 +21,7 @@ namespace MauiAppWR.ViewModels
         }
 
         private async Task NuevoRecordatorio()
-        {
+        {        
             await Shell.Current.GoToAsync(nameof(Views.RecordatorioPage));
         }
 

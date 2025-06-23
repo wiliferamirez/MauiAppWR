@@ -20,10 +20,6 @@
         <ShellContent
             Title="Recordatorios"
             ContentTemplate="{DataTemplate views:RecordatoriosPage}" />
-        
-        <ShellContent 
-            Title="Nuevo Recordatorio" Route="RecordatorioPage" 
-            ContentTemplate="{DataTemplate views:RecordatorioPage}" />
 
 
     </TabBar>
