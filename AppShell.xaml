@@ -16,6 +16,11 @@
         <ShellContent
             Title="About me"
             ContentTemplate="{DataTemplate views:AboutPage}" />
+
+        <ShellContent
+            Title="Recordatorios"
+            ContentTemplate="{DataTemplate views:RecordatoriosPage}" />
+
     </TabBar>
 
 </Shell>
