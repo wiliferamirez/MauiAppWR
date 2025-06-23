@@ -2,10 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MauiAppWR.ViewModels"
              x:Class="MauiAppWR.Views.WeatherPage"
+             BackgroundColor="{Binding FondoPantalla}"
              Title="Clima Actual">
 
-    <ContentPage.BindingContext>
-        <viewmodels:WeatherViewModel />
+    <ContentPage.BindingContext
+        BackgroundColor="{Binding FondoPantalla}">
+        <viewmodels:WeatherViewModel
+        />
     </ContentPage.BindingContext>
 
     <ScrollView>
@@ -13,17 +16,23 @@
 
             <Button Text="Actualizar Clima" Command="{Binding LoadWeatherAsyncCommand}" />
 
-            <Label Text="Hora:" FontAttributes="Bold" />
-            <Label Text="{Binding Clima.Time, StringFormat='{0:dd/MM/yyyy HH:mm}'}" />
+            <Label Text="Hora:" FontAttributes="Bold" TextColor="{Binding ColorTexto}" />
+            <Label Text="{Binding Clima.Time, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{Binding ColorTexto}"/>
 
-            <Label Text="Temperatura:" FontAttributes="Bold" />
-            <Label Text="{Binding Clima.Temperature, StringFormat='{0} °C'}" />
+            <Image Source="{Binding ImagenClima}"
+            HeightRequest="160"
+            WidthRequest="160"
+            HorizontalOptions="Center"
+            Margin="0,10" />
 
-            <Label Text="Humedad:" FontAttributes="Bold" />
-            <Label Text="{Binding Clima.Humidity, StringFormat='{0}%'}" />
+            <Label Text="Temperatura:" FontAttributes="Bold" TextColor="{Binding ColorTexto}" />
+            <Label Text="{Binding Clima.Temperature, StringFormat='{0} °C'}" TextColor="{Binding ColorTexto}" />
 
-            <Label Text="Lluvia:" FontAttributes="Bold" />
-            <Label Text="{Binding Clima.Rain, StringFormat='{0} mm'}" />
+            <Label Text="Humedad:" FontAttributes="Bold" TextColor="{Binding ColorTexto}" />
+            <Label Text="{Binding Clima.Humidity, StringFormat='{0}%'}" TextColor="{Binding ColorTexto}"/>
+
+            <Label Text="Lluvia:" FontAttributes="Bold" TextColor="{Binding ColorTexto}"/>
+            <Label Text="{Binding Clima.Rain, StringFormat='{0} mm'}" TextColor="{Binding ColorTexto}"/>
 
         </VerticalStackLayout>
     </ScrollView>

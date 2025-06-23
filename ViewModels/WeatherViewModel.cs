@@ -8,6 +8,23 @@ namespace MauiAppWR.ViewModels
 {
     internal partial class WeatherViewModel : ObservableObject
     {
+        public string ImagenClima { get; set; }
+        public Color FondoPantalla { get; set; }
+        private Color _colorTexto;
+        public Color ColorTexto
+        {
+            get => _colorTexto;
+            set
+            {
+                if (_colorTexto != value)
+                {
+                    _colorTexto = value;
+                    OnPropertyChanged(nameof(ColorTexto));
+                }
+            }
+        }
+
+
         private readonly WeatherRepository _repository = new();
 
         [ObservableProperty]
@@ -37,6 +54,27 @@ namespace MauiAppWR.ViewModels
                 }
 
                 Clima = await _repository.GetWeatherAsync(location.Latitude, location.Longitude);
+                if (Clima != null)
+                {
+                    int hora = Clima.Time.Hour;
+
+                    if (hora >= 6 && hora < 18)
+                    {
+                        ImagenClima = "dia.webp";
+                        FondoPantalla = Colors.WhiteSmoke;
+                        ColorTexto = Colors.Black;
+                    }
+                    else
+                    {
+                        ImagenClima = "night.png";
+                        FondoPantalla = Colors.Black;
+                        ColorTexto = Colors.White;
+                    }
+
+                    OnPropertyChanged(nameof(ImagenClima));
+                    OnPropertyChanged(nameof(FondoPantalla));
+                }
+
             }
             catch (Exception ex)
             {

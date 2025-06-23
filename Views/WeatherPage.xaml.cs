@@ -15,6 +15,6 @@ public partial class WeatherPage : ContentPage
         base.OnAppearing();
 
         var vm = BindingContext as WeatherViewModel;
-        await ((AsyncRelayCommand)vm.LoadWeatherCommand).ExecuteAsync(null);
+        await vm.LoadWeatherAsync();
     }
 }
