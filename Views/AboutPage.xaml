@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:MauiAppWR.ViewModels"
              x:Class="MauiAppWR.Views.AboutPage"
-             Title="AboutPage"
-             x:DataType="viewModels:AboutViewModel">
-    <ContentPage.BindingContext>
-        <viewModels:AboutViewModel />
-    </ContentPage.BindingContext>
-    <VerticalStackLayout Spacing="10" Margin="10">
-        <HorizontalStackLayout Spacing="10">
-            <Image Source="dotnet_bot.png"
-                   SemanticProperties.Description="The dot net bot waving hello!"
-                   HeightRequest="64" />
-            <Label FontSize="22" FontAttributes="Bold" Text="{Binding Title}" VerticalOptions="End" />
-            <Label FontSize="22" Text="{Binding Version}" VerticalOptions="End" />
-        </HorizontalStackLayout>
+             Title="Acerca de mí"
+             BackgroundColor="White">
 
-        <Label Text="{Binding Message}" />
-        <Button Text="Learn more..." Command="{Binding ShowMoreInfoCommand}" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Center">
 
+            <Frame BorderColor="Gray"
+                   CornerRadius="16"
+                   Padding="20"
+                   BackgroundColor="#f5f5f5"
+                   HasShadow="True"
+                   WidthRequest="300">
+
+                <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
+                    <Image Source="william.jpg"
+                           WidthRequest="120"
+                           HeightRequest="120"
+                           Aspect="AspectFill"
+                           Clip="Circle" />
+
+                    <Label Text="William Ramírez"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="Edad: 27"
+                           FontSize="16"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="Deporte favorito: Thaiboxing"
+                           FontSize="16"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
