@@ -2,44 +2,45 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiAppWR.Models;
 using MauiAppWR.Repositories;
-using System.Windows.Input;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace MauiAppWR.ViewModels
 {
     internal partial class WeatherViewModel : ObservableObject
     {
-        private readonly WeatherRepository _repository;
+        private readonly WeatherRepository _repository = new();
 
         [ObservableProperty]
         private WeatherInfo clima;
 
-        public ICommand LoadWeatherCommand { get; }
-
-        public WeatherViewModel()
+        [RelayCommand]
+        public async Task LoadWeatherAsync()
         {
-            _repository = new WeatherRepository();
-            LoadWeatherCommand = new AsyncRelayCommand(LoadWeatherAsync);
-        }
-
-        private async Task LoadWeatherAsync()
-        {
-            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
-            if (status != PermissionStatus.Granted)
+            try
             {
-                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
                 if (status != PermissionStatus.Granted)
                 {
-                    await Shell.Current.DisplayAlert("Permiso denegado", "Se necesita tu ubicación para mostrar el clima.", "OK");
+                    status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                    if (status != PermissionStatus.Granted)
+                    {
+                        await Shell.Current.DisplayAlert("Permiso", "Ubicación denegada.", "OK");
+                        return;
+                    }
+                }
+
+                var location = await Geolocation.GetLocationAsync(new GeolocationRequest(GeolocationAccuracy.Medium));
+                if (location == null)
+                {
+                    await Shell.Current.DisplayAlert("Error", "No se pudo obtener la ubicación", "OK");
                     return;
                 }
-            }
-            var location = await Geolocation.GetLastKnownLocationAsync()
-                           ?? await Geolocation.GetLocationAsync(new GeolocationRequest());
 
-            if (location != null)
+                Clima = await _repository.GetWeatherAsync(location.Latitude, location.Longitude);
+            }
+            catch (Exception ex)
             {
-                clima = await _repository.GetWeatherAsync(location.Latitude, location.Longitude);
+                await Shell.Current.DisplayAlert("Error", $"Algo salió mal: {ex.Message}", "OK");
             }
         }
     }

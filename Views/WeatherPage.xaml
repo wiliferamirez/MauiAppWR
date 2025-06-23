@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MauiAppWR.ViewModels"
@@ -10,31 +9,21 @@
     </ContentPage.BindingContext>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="24">
+        <VerticalStackLayout Padding="20" Spacing="16">
 
-            <Button Text="Actualizar Clima" Command="{Binding LoadWeatherCommand}" />
+            <Button Text="Actualizar Clima" Command="{Binding LoadWeatherAsyncCommand}" />
 
-            <Frame BorderColor="#cccccc" CornerRadius="12" Padding="16">
-                <VerticalStackLayout Spacing="12">
+            <Label Text="Hora:" FontAttributes="Bold" />
+            <Label Text="{Binding Clima.Time, StringFormat='{0:dd/MM/yyyy HH:mm}'}" />
 
-                    <Label Text="Hora actual" FontSize="14" TextColor="Gray" />
-                    <Label Text="{Binding Clima.Time, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
-                           FontSize="20" FontAttributes="Bold" />
+            <Label Text="Temperatura:" FontAttributes="Bold" />
+            <Label Text="{Binding Clima.Temperature, StringFormat='{0} °C'}" />
 
-                    <Label Text="Temperatura" FontSize="14" TextColor="Gray" />
-                    <Label Text="{Binding Clima.Temperature, StringFormat='{0} °C'}"
-                           FontSize="20" FontAttributes="Bold" />
+            <Label Text="Humedad:" FontAttributes="Bold" />
+            <Label Text="{Binding Clima.Humidity, StringFormat='{0}%'}" />
 
-                    <Label Text="Humedad relativa" FontSize="14" TextColor="Gray" />
-                    <Label Text="{Binding Clima.Humidity, StringFormat='{0}%'}"
-                           FontSize="20" FontAttributes="Bold" />
-
-                    <Label Text="Lluvia (última hora)" FontSize="14" TextColor="Gray" />
-                    <Label Text="{Binding Clima.Rain, StringFormat='{0} mm'}"
-                           FontSize="20" FontAttributes="Bold" />
-
-                </VerticalStackLayout>
-            </Frame>
+            <Label Text="Lluvia:" FontAttributes="Bold" />
+            <Label Text="{Binding Clima.Rain, StringFormat='{0} mm'}" />
 
         </VerticalStackLayout>
     </ScrollView>
