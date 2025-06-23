@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:MauiAppWR.ViewModels"
              x:Class="MauiAppWR.Views.WeatherPage"
-             Title="WeatherPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Clima Actual">
+
+    <ContentPage.BindingContext>
+        <viewmodels:WeatherViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="24">
+
+            <Button Text="Actualizar Clima" Command="{Binding LoadWeatherCommand}" />
+
+            <Frame BorderColor="#cccccc" CornerRadius="12" Padding="16">
+                <VerticalStackLayout Spacing="12">
+
+                    <Label Text="Hora actual" FontSize="14" TextColor="Gray" />
+                    <Label Text="{Binding Clima.Time, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                           FontSize="20" FontAttributes="Bold" />
+
+                    <Label Text="Temperatura" FontSize="14" TextColor="Gray" />
+                    <Label Text="{Binding Clima.Temperature, StringFormat='{0} °C'}"
+                           FontSize="20" FontAttributes="Bold" />
+
+                    <Label Text="Humedad relativa" FontSize="14" TextColor="Gray" />
+                    <Label Text="{Binding Clima.Humidity, StringFormat='{0}%'}"
+                           FontSize="20" FontAttributes="Bold" />
+
+                    <Label Text="Lluvia (última hora)" FontSize="14" TextColor="Gray" />
+                    <Label Text="{Binding Clima.Rain, StringFormat='{0} mm'}"
+                           FontSize="20" FontAttributes="Bold" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -10,6 +10,8 @@ namespace MauiAppWR
 
             Routing.RegisterRoute(nameof(Views.NotePage), typeof(Views.NotePage));
             Routing.RegisterRoute(nameof(RecordatorioPage), typeof(RecordatorioPage));
+            Routing.RegisterRoute(nameof(WeatherPage), typeof(WeatherPage));
+
         }
     }
 }

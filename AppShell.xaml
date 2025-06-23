@@ -21,6 +21,10 @@
             Title="Recordatorios"
             ContentTemplate="{DataTemplate views:RecordatoriosPage}" />
 
+        <ShellContent
+            Title="Weather"
+            ContentTemplate="{DataTemplate views:WeatherPage}" />
+
 
     </TabBar>
 
